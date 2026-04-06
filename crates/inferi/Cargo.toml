@@ -1,0 +1,82 @@
+[package]
+name = "inferi"
+authors = ["Sébastien Crozet <sebcrozet@dimforge.com>"]
+description = "Cross-platform GPU LLM inference."
+homepage = "https://inferi.rs"
+repository = "https://github.com/dimforge/inferi"
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+
+[features]
+default = ["webgpu"]
+webgpu = ["vortx/webgpu"]
+push_constants = ["vortx/push_constants", "khal/push_constants", "inferi-shaders/push_constants"]
+subgroup_ops = ["vortx/subgroup_ops", "khal/subgroup_ops", "inferi-shaders/subgroup_ops"]
+cpu = ["vortx/cpu", "inferi-shaders/cpu"]
+cpu-parallel = ["cpu", "vortx/cpu-parallel", "inferi-shaders/cpu-parallel"]
+cuda = ["vortx/cuda","khal-builder/cuda","inferi-shaders/cuda"]
+onnx = ["dep:onnx-protobuf", "dep:protobuf"]
+
+[dependencies]
+khal = { workspace = true }
+vortx = { workspace = true }
+inferi-shaders = { path = "../inferi-shaders" }
+glamx = { workspace = true }
+nalgebra = { workspace = true }
+wgpu = { workspace = true }
+bytemuck = { workspace = true, features = ["extern_crate_std"] }
+anyhow = { workspace = true }
+async-channel = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+uuid = { version = "1" }
+smallvec = "1"
+dashmap = "6"
+include_dir = "0.7"
+safetensors = "0.6"
+tokenizers = { version = "0.22", default-features=false, features = ["unstable_wasm"] } # , "http"] }
+serde = { version = "1", features = ["derive"] }
+onnx-protobuf = { version = "0.2", optional = true }
+protobuf = { version = "=3.4.0", optional = true }
+half = "2"
+
+# For tokenizer. Move behind feature?
+byteorder = "1"
+ordered-float = "4"
+rand = "0.8"
+regex = "1.10.5"
+serde_json = "1.0.127"
+
+# For wasm?
+getrandom = { version = "0.2.15", features = ["js"] }
+
+# For tensor cache hack
+async-std = { version = "1", features = ["attributes"] }
+
+# For debugging.
+log = "0.4"
+
+
+[dev-dependencies]
+futures-test = "0.3"
+serial_test = "3"
+nalgebra = { version = "0.34", features = ["rand"] }
+approx = "0.5"
+async-std = { version = "1", features = ["attributes"] }
+half = "2"
+
+## For examples
+clap = { version = "4.5.8", features = ["derive"] }
+futures = "0.3.30"
+memmap2 = "0.9.4"
+num-derive = "0.4"
+
+[build-dependencies]
+khal-builder = { workspace = true }
+vortx = { workspace = true } # To access its shaders at compile-time.
+include_dir = "0.7"
+
+# Added this as a build-dependency so that compile errors get reported early
+# and cleanly by the IDE (RustRover). Might not be needed depending on your IDE.
+#inferi-shaders = { path = "../inferi-shaders" }
