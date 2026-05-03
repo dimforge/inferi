@@ -134,9 +134,14 @@ pub fn gemv(
 
     #[cfg(feature = "subgroup_ops")]
     {
-        let sum = khal_std::sync::subgroup_f_add(sum[0]);
+        let reduced = Vec4::new(
+            khal_std::sync::subgroup_f_add(sum[0].x),
+            khal_std::sync::subgroup_f_add(sum[0].y),
+            khal_std::sync::subgroup_f_add(sum[0].z),
+            khal_std::sync::subgroup_f_add(sum[0].w),
+        );
         if lid == 0 {
-            *out.at_mut(workgroup_id.x as usize) = sum;
+            *out.at_mut(workgroup_id.x as usize) = reduced;
         }
     }
 

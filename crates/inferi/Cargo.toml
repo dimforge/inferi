@@ -9,10 +9,10 @@ edition = "2021"
 license = "Apache-2.0"
 
 [features]
-default = ["webgpu"]
+default = ["webgpu", "cpu-parallel"]
 webgpu = ["vortx/webgpu"]
 push_constants = ["vortx/push_constants", "khal/push_constants", "inferi-shaders/push_constants"]
-subgroup_ops = ["vortx/subgroup_ops", "khal/subgroup_ops", "inferi-shaders/subgroup_ops"]
+subgroup_ops = ["khal/subgroup_ops", "inferi-shaders/subgroup_ops"]
 cpu = ["vortx/cpu", "inferi-shaders/cpu"]
 cpu-parallel = ["cpu", "vortx/cpu-parallel", "inferi-shaders/cpu-parallel"]
 cuda = ["vortx/cuda","khal-builder/cuda","inferi-shaders/cuda"]
