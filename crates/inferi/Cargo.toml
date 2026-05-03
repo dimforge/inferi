@@ -74,9 +74,5 @@ num-derive = "0.4"
 
 [build-dependencies]
 khal-builder = { workspace = true }
-vortx = { workspace = true } # To access its shaders at compile-time.
 include_dir = "0.7"
-
-# Added this as a build-dependency so that compile errors get reported early
-# and cleanly by the IDE (RustRover). Might not be needed depending on your IDE.
-#inferi-shaders = { path = "../inferi-shaders" }
+inferi-shaders = { version = "0.1", path = "../inferi-shaders" }

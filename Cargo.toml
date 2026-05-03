@@ -16,25 +16,22 @@ async-channel = "2"
 thiserror = "2"
 tracing = "0.1.41"
 glamx = { version = "0.2", default-features = false, features = ["nostd-libm", "bytemuck"] }
-khal = { version = "0.1", git = "https://github.com/dimforge/khal" }
-khal-std = { version = "0.1", git = "https://github.com/dimforge/khal" }
-vortx = { version = "0.1", git = "https://github.com/dimforge/vortx" }
-vortx-shaders = { version = "0.1", git = "https://github.com/dimforge/vortx" }
-khal-builder = { version = "0.1", git = "https://github.com/dimforge/khal" }
+khal = "0.1"
+khal-std = "0.1"
+vortx = "0.1"
+vortx-shaders = "0.1"
+khal-builder = "0.1.1"
 
 [workspace.lints]
 rust.unexpected_cfgs = { level = "warn", check-cfg = [
     'cfg(feature, values("dim2", "dim3"))'
 ] }
 
-
-[patch.crates-io]
+#[patch.crates-io]
+#khal = { path = "../khal/crates/khal" }
+#khal-std = { path = "../khal/crates/khal-std" }
+#khal-builder = { path = "../khal/crates/khal-builder" }
 #vortx = { path = "../vortx" }
-
-[patch."https://github.com/dimforge/khal"]
-khal = { path = "../khal/crates/khal" }
-khal-std = { path = "../khal/crates/khal-std" }
-khal-builder = { path = "../khal/crates/khal-builder" }
 
 [profile]
 
