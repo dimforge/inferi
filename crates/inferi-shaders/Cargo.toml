@@ -1,7 +1,12 @@
 [package]
 name = "inferi-shaders"
-version = "0.1.0"
+version = { workspace = true }
+authors = ["Sébastien Crozet <sebcrozet@dimforge.com>"]
+description = "Cross-platform GPU LLM inference shaders."
+homepage = "https://inferi.rs"
+repository = "https://github.com/dimforge/inferi"
 edition = "2021"
+license = "Apache-2.0"
 links = "inferi-shaders"
 
 [features]

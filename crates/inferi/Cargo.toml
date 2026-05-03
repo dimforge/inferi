@@ -4,7 +4,7 @@ authors = ["Sébastien Crozet <sebcrozet@dimforge.com>"]
 description = "Cross-platform GPU LLM inference."
 homepage = "https://inferi.rs"
 repository = "https://github.com/dimforge/inferi"
-version = "0.1.0"
+version = { workspace = true }
 edition = "2021"
 license = "Apache-2.0"
 
