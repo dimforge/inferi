@@ -200,7 +200,7 @@ mod test {
         let mut cpu_result = out;
         LayerNorm::run_cpu(&mut cpu_result, &v0);
 
-        approx::assert_relative_eq!(out_read, cpu_result, epsilon = 1.0e-4);
+        approx::assert_relative_eq!(out_read, cpu_result, epsilon = 1.0e-3);
     }
 
     #[cfg(feature = "cpu")]

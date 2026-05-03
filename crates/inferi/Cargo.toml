@@ -9,7 +9,7 @@ edition = "2021"
 license = "Apache-2.0"
 
 [features]
-default = ["webgpu", "cpu-parallel"]
+default = ["webgpu"]
 webgpu = ["vortx/webgpu"]
 push_constants = ["vortx/push_constants", "khal/push_constants", "inferi-shaders/push_constants"]
 subgroup_ops = ["khal/subgroup_ops", "inferi-shaders/subgroup_ops"]
@@ -21,7 +21,7 @@ onnx = ["dep:onnx-protobuf", "dep:protobuf"]
 [dependencies]
 khal = { workspace = true }
 vortx = { workspace = true }
-inferi-shaders = { path = "../inferi-shaders" }
+inferi-shaders = { version = "0.1", path = "../inferi-shaders" }
 glamx = { workspace = true }
 nalgebra = { workspace = true }
 wgpu = { workspace = true }

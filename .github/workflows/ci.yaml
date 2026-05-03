@@ -27,7 +27,7 @@ jobs:
           components: clippy
 
       - name: Install dependencies
-        run: sudo apt-get update; sudo apt-get install --no-install-recommends libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev
+        run: sudo apt-get update; sudo apt-get install --no-install-recommends libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev libasound2-dev
 
       - name: Populate target directory from cache
         uses: Leafwing-Studios/cargo-cache@v2
@@ -36,7 +36,7 @@ jobs:
 
       - name: Install cargo-gpu
         run: |
-          cargo install --git https://github.com/Rust-GPU/cargo-gpu cargo-gpu
+          cargo install cargo-gpu --version 0.10.0-alpha.1
           cargo gpu install --auto-install-rust-toolchain
 
       - name: Run clippy lints
@@ -72,7 +72,7 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
 
       - name: Install dependencies
-        run: sudo apt-get update; sudo apt-get install --no-install-recommends libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev
+        run: sudo apt-get update; sudo apt-get install --no-install-recommends libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev libasound2-dev
 
       - name: Populate target directory from cache
         uses: Leafwing-Studios/cargo-cache@v2
@@ -81,7 +81,7 @@ jobs:
 
       - name: Install cargo-gpu
         run: |
-          cargo install --git https://github.com/Rust-GPU/cargo-gpu cargo-gpu
+          cargo install cargo-gpu --version 0.10.0-alpha.1
           cargo gpu install --auto-install-rust-toolchain
 
       - name: Check documentation
@@ -102,7 +102,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install --no-install-recommends -y \
-            build-essential curl wget file libssl-dev \
+            build-essential curl wget file libssl-dev libasound2-dev \
             libegl1-mesa-dev libgl1-mesa-dri libxcb-xfixes0-dev mesa-vulkan-drivers
 
       - name: Populate target directory from cache
@@ -112,7 +112,7 @@ jobs:
 
       - name: Install cargo-gpu
         run: |
-          cargo install --git https://github.com/Rust-GPU/cargo-gpu cargo-gpu
+          cargo install cargo-gpu --version 0.10.0-alpha.1
           cargo gpu install --auto-install-rust-toolchain
 
       - name: Run Cargo Tests

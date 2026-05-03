@@ -23,7 +23,7 @@ and in the browser.
 Install [cargo-gpu](https://github.com/Rust-GPU/cargo-gpu) (required to compile shaders):
 
 ```bash
-cargo install --git https://github.com/Rust-GPU/cargo-gpu cargo-gpu
+cargo install cargo-gpu --version 0.10.0-alpha.1
 cargo gpu install
 ```
 

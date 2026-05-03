@@ -5,7 +5,7 @@
 use khal::re_exports::include_dir::{include_dir, Dir};
 
 /// Embedded SPIR-V shader directory.
-pub static SPIRV_DIR: Dir<'static> = include_dir!("$CARGO_MANIFEST_DIR/shaders-spirv");
+pub static SPIRV_DIR: Dir<'static> = include_dir!("$OUT_DIR/shaders-spirv");
 
 pub mod context;
 pub mod gguf;

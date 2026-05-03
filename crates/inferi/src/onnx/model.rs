@@ -260,7 +260,7 @@ impl CompiledOnnxGraph {
             let outputs = dispatch_node(node, &input_refs, &output_shapes, ctxt)?;
 
             // Store outputs
-            for (output_name, output_tensor) in node.outputs.iter().zip(outputs.into_iter()) {
+            for (output_name, output_tensor) in node.outputs.iter().zip(outputs) {
                 if !output_name.is_empty() {
                     tensors.insert(output_name.clone(), TensorHolder::Owned(output_tensor));
                 }
@@ -340,13 +340,13 @@ fn infer_shapes(
     // Infer shapes for each node in topological order
     for node in &graph.nodes {
         let (output_shapes, output_values) = infer_node_shapes(node, &shapes, &constant_values)?;
-        for (name, shape) in node.outputs.iter().zip(output_shapes.into_iter()) {
+        for (name, shape) in node.outputs.iter().zip(output_shapes) {
             if !name.is_empty() {
                 shapes.insert(name.clone(), shape);
             }
         }
         // Propagate constant values for shape computation
-        for (name, values) in node.outputs.iter().zip(output_values.into_iter()) {
+        for (name, values) in node.outputs.iter().zip(output_values) {
             if !name.is_empty() {
                 if let Some(v) = values {
                     constant_values.insert(name.clone(), v.clone());
@@ -710,8 +710,8 @@ fn infer_node_shapes(
 
                     // Infer the -1 dimension
                     if let Some(idx) = infer_idx {
-                        if known_size > 0 {
-                            output_shape[idx] = input_size / known_size;
+                        if let Some(v) = input_size.checked_div(known_size) {
+                            output_shape[idx] = v;
                         }
                     }
 
@@ -723,9 +723,9 @@ fn infer_node_shapes(
                         // Try to fix by adjusting the last dimension
                         let other_dims: u32 =
                             output_shape.iter().take(output_shape.len() - 1).product();
-                        if other_dims > 0 {
+                        if let Some(v) = input_size.checked_div(other_dims) {
                             let last_idx = output_shape.len() - 1;
-                            output_shape[last_idx] = input_size / other_dims;
+                            output_shape[last_idx] = v;
                         }
                     }
 

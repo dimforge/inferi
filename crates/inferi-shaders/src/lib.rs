@@ -5,6 +5,9 @@
 // Only no_std when targeting GPU (spirv/nvptx64). On CPU, we need std for generated ShaderArgs.
 #![cfg_attr(any(target_arch = "spirv", target_arch = "nvptx64"), no_std)]
 #![allow(clippy::too_many_arguments)]
+// `spirv_bindgen` generates host-side dispatch code that performs `% workgroup_size`,
+// which triggers this lint when a workgroup dimension is 1.
+#![allow(clippy::modulo_one)]
 #![allow(unexpected_cfgs)]
 // Shader entry points and their constants appear dead on host but are used on GPU.
 #![allow(dead_code, non_snake_case)]
