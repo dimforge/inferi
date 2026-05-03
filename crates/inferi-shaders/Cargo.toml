@@ -2,6 +2,7 @@
 name = "inferi-shaders"
 version = "0.1.0"
 edition = "2021"
+links = "inferi-shaders"
 
 [features]
 # If this feature is enabled, some bound-checking will be disabled,
