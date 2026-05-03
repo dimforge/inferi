@@ -3,6 +3,7 @@ name = "inferi-whisper-chat"
 version = "0.1.0"
 authors = ["Sébastien Crozet <sebcrozet@dimforge.com>"]
 edition = "2021"
+publish = false
 
 [features]
 default = ["webgpu"]
