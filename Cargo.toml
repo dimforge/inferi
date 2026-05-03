@@ -31,10 +31,10 @@ rust.unexpected_cfgs = { level = "warn", check-cfg = [
 [patch.crates-io]
 #vortx = { path = "../vortx" }
 
-#[patch."https://github.com/dimforge/khal"]
-#khal = { path = "../khal/crates/khal" }
-#khal-std = { path = "../khal/crates/khal-std" }
-#khal-builder = { path = "../khal/crates/khal-builder" }
+[patch."https://github.com/dimforge/khal"]
+khal = { path = "../khal/crates/khal" }
+khal-std = { path = "../khal/crates/khal-std" }
+khal-builder = { path = "../khal/crates/khal-builder" }
 
 [profile]
 
